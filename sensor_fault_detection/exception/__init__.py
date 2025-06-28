@@ -9,7 +9,7 @@ def error_message_detail(error, error_detail):
 
     return error_message
 
-class HeartStrokeException(Exception):
+class SensorFaultException(Exception):
     def __init__(self, error_message, error_detail):
         """ Raise exception in string format"""
         super().__init__(error_message)
