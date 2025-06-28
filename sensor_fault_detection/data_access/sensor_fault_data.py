@@ -9,7 +9,7 @@ from sensor_fault_detection.configuration.mongo_db_connection import MongoDBClie
 from sensor_fault_detection.constant.database import DATABASE_NAME
 from sensor_fault_detection.exception import SensorFaultException
 
-class StrokeData:
+class SensorData:
     """
     This class help to export entire mongo db record as pandas dataframe
     """
