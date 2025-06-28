@@ -17,6 +17,7 @@ class DataIngestion:
     def __init__(self, data_ingestion_config: DataIngestionConfig = DataIngestionConfig()):
         try:
             self.data_ingestion_config = data_ingestion_config
+            self._schema_config = read_yaml_file(file_path=SCHEMA_FILE_PATH)
         except Exception as e:
             raise SensorFaultException(e, sys)
     
@@ -50,7 +51,7 @@ class DataIngestion:
     def split_data_as_train_test(self, dataframe: DataFrame) -> None:
         """
         Method Name :   split_data_as_train_test
-        Description :   This method splits the dataframe into train set and test set based on split ratio
+        Description :   This method splits the dataframe into train set and test set based on split ratio and stratified sampling
 
         Output      :   Folder is created in s3 bucket
         On Failure  :   Write an exception log and then raise an exception
@@ -59,7 +60,7 @@ class DataIngestion:
 
         try:
             train_set, test_set = train_test_split(
-                dataframe, test_size=self.data_ingestion_config.train_test_split_ratio
+                dataframe, test_size=self.data_ingestion_config.train_test_split_ratio, stratify=dataframe[self._schema_config["Target_column"]]
             )
             logging.info("Performed train test split on the dataframe")
             logging.info(
