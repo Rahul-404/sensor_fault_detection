@@ -1,0 +1,1 @@
+TRAINING_BUCKET_NAME = "sensor-fault-model"
