@@ -1,13 +1,25 @@
 import os.path
 import sys
-
+import pandas as pd
 import dill
 import numpy as np
 import yaml
-
+import json
 from sensor_fault_detection.exception import SensorFaultException
 from sensor_fault_detection.logger import logging
+from sensor_fault_detection.configuration import mongo_db_connection
 
+
+def dump_csv_file_to_mongodb_collection(file_path: str, database_name: str, collection_name: str) -> None:
+    try:
+        # reading the csv file
+        df = pd.read_csv(file_path)
+        logging.info(f"Rows and Columns {df.shape}")
+        df.reset_index(drop=True, inplace=True)
+        json_records = list(json.load(df.T.to_json()).values())
+        mongo_db_connection.MongoDBClient[database_name][collection_name].insert_many(json_records)
+    except Exception as e:
+        raise SensorFaultException(e, sys)
 
 def read_yaml_file(file_path: str) -> dict:
     try:

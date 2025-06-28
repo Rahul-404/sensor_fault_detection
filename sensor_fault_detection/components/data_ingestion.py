@@ -8,7 +8,7 @@ from sensor_fault_detection.constant.training_pipeline import SCHEMA_FILE_PATH
 from sensor_fault_detection.data_access.sensor_fault_data import SensorData
 from sensor_fault_detection.entity.artifact_entity import DataIngestionArtifact
 from sensor_fault_detection.entity.config_entity import DataIngestionConfig
-from sensor_fault_detection.exception import HeartStrokeException
+from sensor_fault_detection.exception import SensorFaultException
 from sensor_fault_detection.logger import logging
 from sensor_fault_detection.utils.main_utils import read_yaml_file
 
@@ -18,7 +18,7 @@ class DataIngestion:
         try:
             self.data_ingestion_config = data_ingestion_config
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)
     
     def export_data_into_feature_store(self) -> DataFrame:
         """
@@ -30,8 +30,8 @@ class DataIngestion:
         """
         try:
             logging.info(f"Exporting data from mongodb")
-            heart_stroke_data = StrokeData()
-            dataframe = heart_stroke_data.export_collection_as_dataframe(
+            sensor_fault_data = SensorData()
+            dataframe = sensor_fault_data.export_collection_as_dataframe(
                 collection_name=self.data_ingestion_config.collection_name
             )
             logging.info(f"Shape of dataframe: {dataframe.shape}")
@@ -45,7 +45,7 @@ class DataIngestion:
             return dataframe
 
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)
     
     def split_data_as_train_test(self, dataframe: DataFrame) -> None:
         """
@@ -78,7 +78,7 @@ class DataIngestion:
 
             logging.info(f"Exported train and test file path.")
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)
     
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -114,4 +114,4 @@ class DataIngestion:
             logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
             return data_ingestion_artifact
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)

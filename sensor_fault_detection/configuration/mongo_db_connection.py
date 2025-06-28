@@ -6,7 +6,7 @@ import pymongo
 
 from sensor_fault_detection.constant.database import DATABASE_NAME
 from sensor_fault_detection.constant.env_variable import MONGODB_URL_KEY
-from sensor_fault_detection.exception import HeartStrokeException
+from sensor_fault_detection.exception import SensorFaultException
 
 ca = certifi.where()
 
@@ -32,6 +32,6 @@ class MongoDBClient:
             self.database = self.client[database_name]
             self.database_name = database_name
         except Exception as e:
-            raise HeartStrokeException(e, sys) from e
+            raise SensorFaultException(e, sys)
 
 

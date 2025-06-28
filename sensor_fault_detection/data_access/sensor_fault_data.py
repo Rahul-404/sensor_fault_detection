@@ -40,5 +40,5 @@ class SensorData:
             return df
 
         except Exception as e:
-            raise SensorFaultException(e, sys) from e
+            raise SensorFaultException(e, sys)
 
