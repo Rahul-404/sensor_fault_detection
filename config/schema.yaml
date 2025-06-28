@@ -10,14 +10,13 @@ Drop_columns:
 Target_column: class
 
 columns:
-  aa_000: float           # Sensor counter or statistical feature
-  ab_000: float
+  aa_000: float
   ac_000: float
   ad_000: float
   ae_000: float
   af_000: float
   ag_000: float
-  ag_001: float           # Histogram bin
+  ag_001: float
   ag_002: float
   ag_003: float
   ag_004: float
@@ -84,11 +83,6 @@ columns:
   bk_000: float
   bl_000: float
   bm_000: float
-  bn_000: float
-  bo_000: float
-  bp_000: float
-  bq_000: float
-  br_000: float
   bs_000: float
   bt_000: float
   bu_000: float
@@ -122,7 +116,6 @@ columns:
   co_000: float
   cp_000: float
   cq_000: float
-  cr_000: float
   cs_000: float
   cs_001: float
   cs_002: float
@@ -180,4 +173,4 @@ columns:
   ee_009: float
   ef_000: float
   eg_000: float
-  class : int          # 1 = APS failure (positive), 0 = no failure (negative)
+  class : int
