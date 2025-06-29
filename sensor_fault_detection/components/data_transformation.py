@@ -167,12 +167,12 @@ class DataTransformation:
                 )
 
                 save_object(
-                    self.data_transformation_config.transformer_object_file_path,
+                    self.data_transformation_config.label_encoder_object_file_path,
                     label_encoder,
                 )
 
                 save_numpy_array_data(
-                    self.data_transformation_config.label_encoder_object_file_path,
+                    self.data_transformation_config.transformed_train_file_path,
                     array=train_arr,
                 )
                 save_numpy_array_data(
