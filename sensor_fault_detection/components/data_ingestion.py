@@ -60,7 +60,7 @@ class DataIngestion:
 
         try:
             train_set, test_set = train_test_split(
-                dataframe, test_size=self.data_ingestion_config.train_test_split_ratio, stratify=dataframe[self._schema_config["Target_column"]]
+                dataframe, test_size=self.data_ingestion_config.train_test_split_ratio, stratify=dataframe[self._schema_config["target_column"]]
             )
             logging.info("Performed train test split on the dataframe")
             logging.info(
@@ -95,7 +95,7 @@ class DataIngestion:
             dataframe = self.export_data_into_feature_store()
             _schema_config = read_yaml_file(file_path=SCHEMA_FILE_PATH)
 
-            dataframe = dataframe.drop(_schema_config["Drop_columns"], axis=1)
+            dataframe = dataframe.drop(_schema_config["drop_columns"], axis=1)
 
             logging.info("Got the data from mongodb")
 
