@@ -5,8 +5,8 @@ from sensor_fault_detection.entity.artifact_entity import (
     ModelPusherArtifact,
 )
 from sensor_fault_detection.entity.config_entity import ModelPusherConfig
-from sensor_fault_detection.ml.s3_estimator import StrokeEstimator
-from sensor_fault_detection.exception import HeartStrokeException
+from sensor_fault_detection.ml.s3_estimator import SensorFaultModel
+from sensor_fault_detection.exception import SensorFaultException
 from sensor_fault_detection.logger import logging
 
 
@@ -19,7 +19,7 @@ class ModelPusher:
 
         self.model_trainer_artifact = model_trainer_artifact
         self.model_pusher_config = model_pusher_config
-        self.stroke_estimator = StrokeEstimator(
+        self.stroke_estimator = SensorFaultModel(
             bucket_name=model_pusher_config.bucket_name,
             model_path=model_pusher_config.s3_model_key_path,
         )
@@ -48,4 +48,4 @@ class ModelPusher:
             return model_pusher_artifact
 
         except Exception as e:
-            raise HeartStrokeException(e, sys) from e
+            raise SensorFaultException(e, sys) from e
