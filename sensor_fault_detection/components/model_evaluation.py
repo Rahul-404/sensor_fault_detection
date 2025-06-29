@@ -14,7 +14,7 @@ from sensor_fault_detection.entity.artifact_entity import (
 from sensor_fault_detection.entity.config_entity import ModelEvaluationConfig
 from sensor_fault_detection.exception import SensorFaultException
 from sensor_fault_detection.logger import logging
-from sensor_fault_detection.ml.s3_estimator import StrokeEstimator
+from sensor_fault_detection.ml.s3_estimator import SensorFaultEstimator
 
 
 @dataclass
@@ -42,9 +42,9 @@ class ModelEvaluation:
             self.data_ingestion_artifact = data_ingestion_artifact
             self.model_trainer_artifact = model_trainer_artifact
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)
     
-    def get_best_model(self) -> Optional[StrokeEstimator]:
+    def get_best_model(self) -> Optional[SensorFaultEstimator]:
         """
         Method Name :   get_best_model
         Description :   This function is used to get model in production
@@ -55,7 +55,7 @@ class ModelEvaluation:
         try:
             bucket_name = self.model_eval_config.bucket_name
             model_path = self.model_eval_config.s3_model_key_path
-            heart_stroke_estimator = StrokeEstimator(
+            heart_stroke_estimator = SensorFaultEstimator(
                 bucket_name=bucket_name, model_path=model_path
             )
 
@@ -101,7 +101,7 @@ class ModelEvaluation:
             return result
 
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)
         
     def initiate_model_evaluation(self) -> ModelEvaluationArtifact:
         """
@@ -126,4 +126,4 @@ class ModelEvaluation:
             logging.info(f"Model evaluation artifact: {model_evaluation_artifact}")
             return model_evaluation_artifact
         except Exception as e:
-            raise HeartStrokeException(e, sys)
+            raise SensorFaultException(e, sys)

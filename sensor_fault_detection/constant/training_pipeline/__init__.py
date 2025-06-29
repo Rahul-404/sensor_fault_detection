@@ -1,4 +1,5 @@
 import os
+from sensor_fault_detection.constant.s3_bucket import TRAINING_BUCKET_NAME
 
 TARGET_COLUMN = "class"
 PIPELINE_NAME: str = "sensor_fault"
