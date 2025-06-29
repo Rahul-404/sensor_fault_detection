@@ -84,9 +84,14 @@ class ModelTrainerConfig:
 class ModelEvaluationConfig:
     changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
     bucket_name: str = MODEL_PUSHER_BUCKET_NAME
-    s3_model_key_path: str = "heart-stroke-model.pkl"
+    s3_model_key_path: str = "sensor-fault-model.pkl"
 
 @dataclass
 class ModelPusherConfig:
     bucket_name: str = MODEL_PUSHER_BUCKET_NAME
-    s3_model_key_path: str = "heart-stroke-model.pkl"
+    s3_model_key_path: str = "sensor-fault-model.pkl"
+
+@dataclass
+class FaultPredictionConfig:
+    model_bucket_name: str = MODEL_PUSHER_BUCKET_NAME
+    model_file_path: str = "sensor-fault-model.pkl"
