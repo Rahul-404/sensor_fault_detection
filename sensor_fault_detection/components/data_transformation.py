@@ -161,20 +161,22 @@ class DataTransformation:
                     input_feature_test_final, np.array(target_feature_test_final)
                 ]
 
+                # save features preprocessing object
                 save_object(
                     self.data_transformation_config.transformer_object_file_path,
                     preprocessor,
                 )
-
+                # save target preprocessin object
                 save_object(
                     self.data_transformation_config.label_encoder_object_file_path,
                     label_encoder,
                 )
-
+                # save processed train data
                 save_numpy_array_data(
                     self.data_transformation_config.transformed_train_file_path,
-                    array=train_arr,
+                    array=test_arr,
                 )
+                # save processed test data
                 save_numpy_array_data(
                     self.data_transformation_config.transformed_test_file_path,
                     array=test_arr,
