@@ -29,7 +29,6 @@ def read_yaml_file(file_path: str) -> dict:
     except Exception as e:
         raise SensorFaultException(e, sys) from e
 
-
 def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
     try:
         if replace:
@@ -40,7 +39,6 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False) -> N
             yaml.dump(content, file)
     except Exception as e:
         raise SensorFaultException(e, sys)
-
 
 def load_object(file_path: str) -> object:
     logging.info("Entered the load_object method of MainUtils class")
