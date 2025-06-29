@@ -111,7 +111,7 @@ The model will be deployed as a **REST API** using **FastAPI**, hosted on **AWS 
 
 ### ⚙️ **Deployment Stack**
 
-- **FastAPI** → REST API serving stroke predictions
+- **FastAPI** → REST API serving fault detections
 - **AWS S3** → Store model artifacts (e.g., trained `.pkl` files)
 - **AWS ECR (Elastic Container Registry)** → Docker image registry
 - **AWS EC2** → Hosting the Dockerized FastAPI service
